@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Rewrite</title>
+    <link rel="stylesheet" href="panel.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>URL Rewrite</h1>
+            <div class="global-toggle">
+                <label class="switch">
+                    <input type="checkbox" id="globalEnabled" checked>
+                    <span class="slider"></span>
+                </label>
+                <span class="toggle-label">グローバル有効</span>
+            </div>
+        </header>
+
+        <section class="add-rule-section">
+            <h2>新しいルールを追加</h2>
+            <form id="addRuleForm">
+                <div class="form-group">
+                    <label for="pattern">正規表現パターン</label>
+                    <input type="text" id="pattern" placeholder="^https://example\\.com/(.*)$" required>
+                </div>
+                <div class="form-group">
+                    <label for="replacement">置換先URL</label>
+                    <input type="text" id="replacement" placeholder="https://newsite.com/$1" required>
+                </div>
+                <button type="submit" class="btn btn-primary">追加</button>
+            </form>
+        </section>
+
+        <section class="rules-section">
+            <h2>登録済みルール</h2>
+            <div id="rulesList" class="rules-list">
+                <!-- ルールがここに表示される -->
+            </div>
+            <p id="noRulesMessage" class="no-rules">ルールがありません</p>
+        </section>
+    </div>
+
+    <!-- 編集モーダル -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <h2>ルールを編集</h2>
+            <form id="editRuleForm">
+                <input type="hidden" id="editRuleId">
+                <div class="form-group">
+                    <label for="editPattern">正規表現パターン</label>
+                    <input type="text" id="editPattern" required>
+                </div>
+                <div class="form-group">
+                    <label for="editReplacement">置換先URL</label>
+                    <input type="text" id="editReplacement" required>
+                </div>
+                <div class="modal-buttons">
+                    <button type="button" class="btn btn-secondary" id="cancelEdit">キャンセル</button>
+                    <button type="submit" class="btn btn-primary">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="panel.js"></script>
+</body>
+
+</html>
